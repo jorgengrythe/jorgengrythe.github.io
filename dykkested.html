@@ -1,13 +1,34 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Dykketreff - dykkeplasser</title>
+        <title>Dykketreff - dykkeplass</title>
     </head>
     <body>
-        <a href="dykketreff://dykkested?latitude=60.730541&longitude=4.970936">Fosnstraumen, Austrheim</a><br>
-        <a href="dykketreff://dykkested?latitude=60.497875&longitude=4.932152">Rongasundet, Øygarden</a><br>
-        <a href="dykketreff://dykkested?latitude=60.517073&longitude=4.897335">Ulvsundet, Øygarden</a><br>
-        <a href="dykketreff://dykkested?latitude=60.581781&longitude=4.862414">Søndre Straumsund, Øygarden</a><br>
-        <a href="dykketreff://dykkested?latitude=60.587154&longitude=4.855032">Nordra Straumøysundet, Øygarden</a><br>
+        <script>
+
+            /**
+             * Get the value of a querystring
+             * @param  {String} field The field to get the value of
+             * @param  {String} url   The URL to get the value from (optional)
+             * @return {String}       The field value
+             */
+            var getQueryString = function ( field, url ) {
+                var href = url ? url : window.location.href;
+                var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+                var string = reg.exec(href);
+                return string ? string[1] : null;
+            };
+
+            var latitude = getQueryString('latitude');
+            var longitude = getQueryString('longitude');
+
+            var link = 'dykketreff://dykkested?latitude=' + latitude + '&longitude=' + longitude;
+            if (!(latitude==null || longitude == null)){
+                document.write('<a href="' + link + '">' + link + '</a>');
+            }
+
+
+        </script>
     </body>
 </html>
+
